@@ -312,9 +312,9 @@ factions=[
 ]
 ```
 
-![截图1](images\mb1.jpg)
+![截图1](images/mb1.jpg)
 
-![截图2](images\mb2.jpg)
+![截图2](images/mb2.jpg)
 
 ### 3.添加兵种
 
