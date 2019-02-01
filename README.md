@@ -32,7 +32,9 @@
 
 ​	3.start：剧本的配置文件和运行都在这个文件夹中，配置文件（config.py），运行文件（run.py），你每一次修改文件都要运行才能让你的修改生效（有时间运行可能需要运行两次，制作过剧本的人应该都了解）。
 
+## 需要环境
 
+须要安装python2.7的环境，（3.x以上的没有测试过）
 
 ## 1.剧本制作者
 
@@ -310,9 +312,9 @@ factions=[
 ]
 ```
 
-![截图1](E:\projects\PycharmProjects\scottish-fold\images\mb1.jpg)
+![截图1](images\mb1.jpg)
 
-![截图2](E:\projects\PycharmProjects\scottish-fold\images\mb2.jpg)
+![截图2](images\mb2.jpg)
 
 ### 3.添加兵种
 
