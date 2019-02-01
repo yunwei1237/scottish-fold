@@ -362,10 +362,8 @@ def getFacId(fac_index):
 def getDefaultTroop(troopsKey,fac,trp_index):
     troops = fac[troopsKey] if (fac.has_key(troopsKey)) else default_faction[troopsKey]
     #如果生成(国王,领主,妻子,女儿)时,没有提供,数据就随机从默认数据里提取
-    if troopsKey in ["lords","wifes","daughters"]:
-        return random.choice(troops) if (len(troops) > 0) else random.choice(default_faction[troopsKey])
-    elif troopsKey in ["king"]:
-        return troops
+    if troopsKey in ["king","lords","wifes","daughters"]:
+        return random.choice(default_faction[troopsKey])
     else:#如果生成士兵时,没有提供数据,就依次从默认的数据里提取
         return troops[trp_index] if (trp_index < len(troops)) else random.choice(default_faction[troopsKey])
 '''

@@ -1016,9 +1016,6 @@ scripts = [
 (call_script, "script_give_center_to_lord", "p_town_12", "trp_knight_4_2", 0),
 (call_script, "script_give_center_to_lord", "p_town_3", "trp_knight_5_1", 0),
 (call_script, "script_give_center_to_lord", "p_town_15", "trp_knight_5_2", 0),
-(call_script, "script_give_center_to_lord", "p_town_4", "trp_knight_1_1", 0),
-(call_script, "script_give_center_to_lord", "p_town_7", "trp_knight_1_2", 0),
-(call_script, "script_give_center_to_lord", "p_town_16", "trp_knight_1_3", 0),
 ## kingCities
 (call_script, "script_give_center_to_lord", "p_town_6", "trp_kingdom_1_lord", 0),
 (call_script, "script_give_center_to_lord", "p_town_8", "trp_kingdom_2_lord", 0),

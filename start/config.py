@@ -8,7 +8,7 @@ modPath = "D:/game/Mount&Blade/Modules/Native/"
 # # 主要的配置信息,默认规则请参看：base_data（在本文件最后）
 factions=[
     {
-        "fac_id":"kingdom_6",#国家id（1-5，已经被系统国家所使用，要么不要指定，要么指定一个5以上id）
+        #"fac_id":"kingdom_6",#国家id（1-5，已经被系统国家所使用，要么不要指定，要么指定一个5以上id）
         "fac_name":"Kingdom of china",#国家名称
         "color":"0xFF0000",#国家的颜色
         "king":{
@@ -28,7 +28,7 @@ factions=[
              #将【艾车莫尔】这个城堡给国王，这个属性也可以应用到国家，国王，领主
              "cities":["p_town_17"]
         },
-        "lords":swadian_lords,#国家的领主（使用哈劳斯国王全部手下信息）
+        "lords":[{},{}],#国家的领主（使用哈劳斯国王全部手下信息）
         "troops":swadian_troops,#指定国家的士兵信息（使用哈劳斯国王的兵种，当然，你也可以学习下一章的内容，然后添加属于自己的兵种）
         #将【乌鲁兹达克堡】这个城堡给新增的国家，最后分给哪个领主，是随机的
         "cities":["p_castle_22"]
