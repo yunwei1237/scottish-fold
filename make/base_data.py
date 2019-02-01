@@ -13,6 +13,7 @@ swadian_lords = [
 		"skill":"knight_skills_1|knows_trainer_1|knows_trainer_3",
 		"face1":"0x0000000c3e08601414ab4dc6e39296b200000000001e231b0000000000000000",
 		"face2":"swadian_face_middle_2",
+		"cities":["p_town_4"]
 	},
 	{
 		"id":"knight_1_2",
@@ -24,6 +25,7 @@ swadian_lords = [
 		"skill":"knight_skills_2",
 		"face1":"0x0000000c0f08000458739a9a1476199800000000001fb6f10000000000000000",
 		"face2":"swadian_face_old_2",
+		"cities":["p_town_7"]
 	},
 	{
 		"id":"knight_1_3",
@@ -35,6 +37,7 @@ swadian_lords = [
 		"skill":"knight_skills_3",
 		"face1":"0x0000000c0610351048e325361d7236cd00000000001d532a0000000000000000",
 		"face2":"swadian_face_older_2",
+		"cities":["p_town_16"]
 	},
 	{
 		"id":"knight_1_4",
@@ -235,6 +238,7 @@ rhodok_lords = [
 		"skill":"knight_skills_1|knows_trainer_3",
 		"face1":"0x0000000a1b0c00483adcbaa5ac9a34a200000000001ca2d40000000000000000",
 		"face2":"rhodok_face_middle_2",
+		"cities":["p_town_3"]
 	},
 	{
 		"id":"knight_5_2",
@@ -246,6 +250,7 @@ rhodok_lords = [
 		"skill":"knight_skills_2|knows_trainer_4",
 		"face1":"0x0000000c390c659229136db45a75251300000000001f16930000000000000000",
 		"face2":"rhodok_face_old_2",
+		"cities":["p_town_15"]
 	},
 	{
 		"id":"knight_5_3",
@@ -457,6 +462,7 @@ nord_lords = [
 		"skill":"knight_skills_1",
 		"face1":"0x0000000c13002254340eb1d91159392d00000000001eb75a0000000000000000",
 		"face2":"nord_face_middle_2",
+		"cities":["p_town_2"]
 	},
 	{
 		"id":"knight_4_2",
@@ -468,6 +474,7 @@ nord_lords = [
 		"skill":"knight_skills_2|knows_trainer_3",
 		"face1":"0x0000000c1610218368e29744e9a5985b00000000001db2a10000000000000000",
 		"face2":"nord_face_old_2",
+		"cities":["p_town_12"]
 	},
 	{
 		"id":"knight_4_3",
@@ -679,6 +686,7 @@ vaegir_lords = [
 		"skill":"knight_skills_1|knows_trainer_3",
 		"face1":"0x00000005590011c33d9b6d4a92ada53500000000001cc1180000000000000000",
 		"face2":"vaegir_face_middle_2",
+		"cities":["p_town_9"]
 	},
 	{
 		"id":"knight_2_2",
@@ -690,6 +698,7 @@ vaegir_lords = [
 		"skill":"knight_skills_2",
 		"face1":"0x0000000c2a0015d249b68b46a98e176400000000001d95a40000000000000000",
 		"face2":"vaegir_face_old_2",
+		"cities":["p_town_11"]
 	},
 	{
 		"id":"knight_2_3",
@@ -701,6 +710,7 @@ vaegir_lords = [
 		"skill":"knight_skills_3",
 		"face1":"0x0000000c131031c546a38a2765b4c86000000000001e58d30000000000000000",
 		"face2":"vaegir_face_older_2",
+		"cities":["p_town_13"]
 	},
 	{
 		"id":"knight_2_4",
@@ -901,6 +911,7 @@ khergit_lords = [
 		"skill":"knight_skills_1|knows_trainer_3|knows_power_draw_4",
 		"face1":"0x000000043000318b54b246b7094dc39c00000000001d31270000000000000000",
 		"face2":"khergit_face_middle_2",
+		"cities":["p_town_14"]
 	},
 	{
 		"id":"knight_3_2",
@@ -912,6 +923,7 @@ khergit_lords = [
 		"skill":"knight_skills_2|knows_power_draw_4",
 		"face1":"0x0000000c280461004929b334ad632aa200000000001e05120000000000000000",
 		"face2":"khergit_face_old_2",
+		"cities":["p_town_17"]
 	},
 	{
 		"id":"knight_3_3",
@@ -923,6 +935,7 @@ khergit_lords = [
 		"skill":"knight_skills_3|knows_trainer_5|knows_power_draw_4",
 		"face1":"0x0000000e880062c53b0a6e4994ae272a00000000001db4e10000000000000000",
 		"face2":"khergit_face_older_2",
+		"cities":["p_town_18"]
 	},
 	{
 		"id":"knight_3_4",
@@ -1837,6 +1850,7 @@ swadian_kings = [
 		"skill":"knight_skills_5|knows_trainer_5",
 		"face1":"0x0000000f45041105241acd2b5a66a86900000000001e98310000000000000000",
 		"face2":"swadian_face_older_2",
+		"cities":["p_town_6"]
 	},
 ]
 rhodok_kings = [
@@ -1850,6 +1864,7 @@ rhodok_kings = [
 		"skill":"knight_skills_4|knows_trainer_5",
 		"face1":"0x0000000efc04119225848dac5d50d62400000000001d48b80000000000000000",
 		"face2":"rhodok_face_old_2",
+		"cities":["p_town_5"]
 	},
 ]
 nord_kings = [
@@ -1863,6 +1878,7 @@ nord_kings = [
 		"skill":"knight_skills_5|knows_trainer_4",
 		"face1":"0x0000000e2c0c028a068e8c18557b12a500000000001c0fe80000000000000000",
 		"face2":"nord_face_older_2",
+		"cities":["p_town_1"]
 	},
 ]
 vaegir_kings = [
@@ -1876,6 +1892,7 @@ vaegir_kings = [
 		"skill":"knight_skills_5|knows_trainer_4",
 		"face1":"0x0000000ec50001400a2269f919dee11700000000001cc57d0000000000000000",
 		"face2":"vaegir_face_old_2",
+		"cities":["p_town_8"]
 	},
 ]
 khergit_kings = [
@@ -1889,6 +1906,7 @@ khergit_kings = [
 		"skill":"knight_skills_5|knows_trainer_6",
 		"face1":"0x0000000cee0051cc44be2d14d370c65c00000000001ed6df0000000000000000",
 		"face2":"khergit_face_old_2",
+		"cities":["p_town_10"]
 	},
 ]
 swadian_pretender = [
@@ -2239,31 +2257,33 @@ sys_factions=[
         "fac_id":"kingdom_1",
         "fac_name":"Kingdom of Swadia",
         "color":"0xDD8844",
-        "king":swadian_kings,
+        "king":swadian_kings[0],
         "pretender":swadian_pretender,
         "lords":swadian_lords,
         "lord_items":swadian_lords[random.randint(0,len(swadian_lords)-1)]["items"],
         "lord_max_num":20,
         "troops":swadian_troops,
         "upgradeKingdom":swadian_upgrade,
+		"cities":["p_castle_13","p_castle_20","p_castle_23","p_castle_24","p_castle_25","p_castle_26","p_castle_27","p_castle_31","p_castle_35"]
     },
     {
         "fac_id":"kingdom_2",
         "fac_name":"Kingdom of Vaegirs",
         "color":"0x33DD33",
-        "king":vaegir_kings,
+        "king":vaegir_kings[0],
         "pretender":vaegir_pretender,
         "lords":vaegir_lords,
         "lord_items":vaegir_lords[random.randint(0,len(vaegir_lords)-1)]["items"],
         "lord_max_num":20,
         "troops":vaegir_troops,
         "upgradeKingdom":vaegir_upgrade,
+		"cities":["p_castle_3","p_castle_4","p_castle_6","p_castle_8","p_castle_18","p_castle_19","p_castle_29","p_castle_37","p_castle_39"]
     },
     {
         "fac_id":"kingdom_3",
         "fac_name":"Khergit Khanate",
         "color":"0xCC99FF",
-        "king":khergit_kings,
+        "king":khergit_kings[0],
         "pretender":khergit_pretender,
         "lords":khergit_lords,
         "lord_items":khergit_lords[random.randint(0,len(khergit_lords)-1)]["items"],
@@ -2271,31 +2291,34 @@ sys_factions=[
         "troops":khergit_troops,
         "upgradeKingdom":khergit_upgrade,
         "wifes":ladies_wifes,
-        "daughters":ladies_daughters
+        "daughters":ladies_daughters,
+		"cities":["p_castle_2","p_castle_7","p_castle_17","p_castle_22","p_castle_30","p_castle_38","p_castle_40"]
     },
     {
         "fac_id": "kingdom_4",
         "fac_name": "Kingdom of Nords",
         "color": "0xDDDD33",
-        "king": nord_kings,
+        "king": nord_kings[0],
         "pretender":nord_pretender,
         "lords": nord_lords,
         "lord_items": nord_lords[random.randint(0, len(nord_lords) - 1)]["items"],
         "lord_max_num": 20,
         "troops": nord_troops,
         "upgradeKingdom": nord_upgrade,
+		"cities":["p_castle_5","p_castle_10","p_castle_11","p_castle_12","p_castle_32","p_castle_34","p_castle_36"]
     },
     {
         "fac_id": "kingdom_5",
         "fac_name": "Kingdom of Rhodoks",
         "color": "0x33DDDD",
-        "king": rhodok_kings,
+        "king": rhodok_kings[0],
         "pretender":rhodok_pretender,
         "lords": rhodok_lords,
         "lord_items": rhodok_lords[random.randint(0, len(rhodok_lords) - 1)]["items"],
         "lord_max_num": 20,
         "troops": rhodok_troops,
         "upgradeKingdom": rhodok_upgrade,
+		"cities":["p_castle_1","p_castle_9","p_castle_14","p_castle_15","p_castle_16","p_castle_21","p_castle_28","p_castle_33"]
     }
 ]
 
@@ -2494,5 +2517,9 @@ factions_descript=[
             ["farmer","watchman"],
             ["watchman","caravan_guard","mercenary_crossbowman"],
         ],
+		#将以下城堡授予指定的国家
+		"cities":[
+			"p_town_17","p_castle_22"
+		]
     }
 ]

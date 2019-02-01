@@ -275,6 +275,9 @@ dataList = {
     "kings":[],##国王集合
     "lords":[],##领主集合
     "partyTemplate":[],##兵种模板集合
+    "facCities":[],##属于国家的城堡
+    "lordCities":[],##属于领主的城堡
+    "kingCities":[],##属于领主的城堡
     "constants":{
         # "kingdoms_begin":"\"fac_player_supporters_faction\"",
         # "kingdoms_end":"\"fac_kingdoms_end\"",
@@ -306,7 +309,11 @@ def getFactions():
         fac_name = fac["fac_name"] if(fac.has_key("fac_name")) else "kingdom_"+str(i+1);
         color = fac["color"] if(fac.has_key("color")) else getRandomColor();
         facs.append("(\"%s\",  \"%s\",    0, 0.9, [(\"outlaws\",-0.05),(\"peasant_rebels\", -0.1),(\"deserters\", -0.02),(\"mountain_bandits\", -0.05),(\"forest_bandits\", -0.05)], [], %s),\n"%(fac_id,fac_name,color))
-
+        ## 生成城堡信息
+        cities = fac["cities"] if (fac.has_key("cities")) else None
+        if cities != None and len(cities) != 0:
+            for city in cities:
+                dataList["facCities"].append('(call_script, "script_give_center_to_faction_aux", "%s", "%s"),\n'%(city,"fac_"+fac_id))
     dataList["factions"] = facs
 '''
     根据国家名字生成对应的文化信息
@@ -355,8 +362,10 @@ def getFacId(fac_index):
 def getDefaultTroop(troopsKey,fac,trp_index):
     troops = fac[troopsKey] if (fac.has_key(troopsKey)) else default_faction[troopsKey]
     #如果生成(国王,领主,妻子,女儿)时,没有提供,数据就随机从默认数据里提取
-    if troopsKey in ["king","lords","wifes","daughters"]:
+    if troopsKey in ["lords","wifes","daughters"]:
         return random.choice(troops) if (len(troops) > 0) else random.choice(default_faction[troopsKey])
+    elif troopsKey in ["king"]:
+        return troops
     else:#如果生成士兵时,没有提供数据,就依次从默认的数据里提取
         return troops[trp_index] if (trp_index < len(troops)) else random.choice(default_faction[troopsKey])
 '''
@@ -441,8 +450,10 @@ def getTroopWp(troopsKey,troop):
     return wp
 
 def createTroop(lords, trp_index, troopsKey, fac, fac_index, fac_id):
-    # 当前用户配置的领主信息
-    troop = lords[trp_index] if (trp_index < len(lords)) else {}
+    troop = lords
+    if type(lords) is list:
+        # 当前用户配置的领主信息
+        troop = lords[trp_index] if (trp_index < len(lords)) else {}
     # 如果用户没有配置时采用的备用信息
     default_troop = getDefaultTroop(troopsKey, fac, trp_index)
     id = getTroopId(troopsKey,fac_index,troop,trp_index)
@@ -454,21 +465,32 @@ def createTroop(lords, trp_index, troopsKey, fac, fac_index, fac_id):
     skill = troop["skill"] if (troop.has_key("skill")) else default_troop["skill"]
     face1 = troop["face1"] if (troop.has_key("face1")) else getRandomHeroFace()
     face2 = troop["face2"] if (troop.has_key("face2")) else getFace(period="young")
+    ## 生成城堡信息
+    cities = troop["cities"] if (troop.has_key("cities")) else None
+    if cities != None and len(cities) != 0:
+        for city in cities:
+            if type(lords) is list:
+                dataList["lordCities"].append('(call_script, "script_give_center_to_lord", "%s", "%s", 0),\n' % (city, "trp_" + id))
+            else:
+                dataList["kingCities"].append('(call_script, "script_give_center_to_lord", "%s", "%s", 0),\n' % (city, "trp_" + id))
     return "[\"{}\", \"{}\", \"{}\", {}, 0, reserved,  {}, {},   {},{},{}, {}, {}],\n".format(id, troop_name, troop_name,flag, "fac_" + fac_id, items,attr, wp, skill, face1,face2)
 
 '''
     生成各种人物信息,如:国王,领主,妻子,女儿,士兵,其它兵种或英雄等信息
 '''
 def createTroops(troopsKey,maxNumKey=None):
-    list = []
+    results = []
     for fac_index in range(0,len(factions)):
-        troop_start_index = len(list)
+        troop_start_index = len(results)
         fac = factions[fac_index]
         fac_id = fac["fac_id"] if (fac.has_key("fac_id")) else getFacId(fac_index)
         lords = fac[troopsKey] if(fac.has_key(troopsKey)) else []
         max_num = fac[maxNumKey] if(fac.has_key(maxNumKey)) else default_faction[maxNumKey] if(default_faction.has_key(maxNumKey)) else 1
-        for trp_index in range(0,len(lords)):
-            list.append(createTroop(lords, trp_index, troopsKey, fac, fac_index, fac_id))
+        if type(lords) is list:
+            for trp_index in range(0,len(lords)):
+                results.append(createTroop(lords, trp_index, troopsKey, fac, fac_index, fac_id))
+        else:
+            results.append(createTroop(lords, 0, troopsKey, fac, fac_index, fac_id))
         autoLen = 0
         if troopsKey == "troops":
             autos = fac["autoTroops"] if fac.has_key("autoTroops") else None
@@ -476,21 +498,21 @@ def createTroops(troopsKey,maxNumKey=None):
                 autoLen = len(autos)
                 autoConfigs = data_troop.getTroopConfigList(autos,fac)
                 for trp_index in range(0, len(autoConfigs)):
-                    list.append(createTroop(autoConfigs, trp_index, troopsKey, fac, fac_index, fac_id))
+                    results.append(createTroop(autoConfigs, trp_index, troopsKey, fac, fac_index, fac_id))
         for trp_index in range(len(lords)+autoLen,max_num):
-            list.append(createTroop(lords, trp_index, troopsKey, fac, fac_index, fac_id))
+            results.append(createTroop(lords, trp_index, troopsKey, fac, fac_index, fac_id))
         ##兵种升级信息troop_start_index
         if troopsKey == "troops":
             upgradeKingdom = fac["upgradeKingdom"] if fac.has_key("upgradeKingdom") else []
             for upgrade in upgradeKingdom:
-                troop1 = getDataId(list[troop_start_index+upgrade[0]-1])
-                troop2 = getDataId(list[troop_start_index+upgrade[1]-1])
+                troop1 = getDataId(results[troop_start_index+upgrade[0]-1])
+                troop2 = getDataId(results[troop_start_index+upgrade[1]-1])
                 if len(upgrade) == 2:
                     dataList["upgrades"].append('upgrade(troops,"%s","%s")\n'%(troop1,troop2))
                 elif len(upgrade) == 3:
-                    troop3 = getDataId(list[troop_start_index + upgrade[2] - 1])
+                    troop3 = getDataId(results[troop_start_index + upgrade[2] - 1])
                     dataList["upgrades"].append('upgrade2(troops,"%s","%s","%s")\n'%(troop1, troop2,troop3))
-    dataList[troopsKey] = list
+    dataList[troopsKey] = results
 
 def getDataId(troop):
     return re.match("\w+",re.sub(r"[\"\[\]]","",troop)).group();
@@ -537,84 +559,93 @@ def getladies():
         dataList["constants"]["kingdom_ladies_begin"] = kingdom_ladies_begin
 
 def productData():
-    print "正在生成文化信息……"
+    print "generate cultures data……"
     getCultures()
-    print "正在生成国家信息……"
+    print "generate factions data……"
     getFactions()
-    print "正在生成国王信息……"
+    print "generate kings data……"
     getKings()
-    print "正在生成叛军首领信息……"
+    print "generate pretenders data……"
     getPretenders()
-    print "正在生成领主信息……"
+    print "generate lords data……"
     getLords()
-    print "正在生成女士信息……"
+    print "generate ladies data……"
     getladies()
-    print "正在生成士兵信息……"
+    print "generate troops data……"
     getTroops()
-    print "正在生成部队模板信息……"
+    print "generate party template data……"
     getPartyTemplate()
 '''
     预览生成的相关数据（文化，国家，国王，领主，妻女,兵种，部队模板）
 '''
 def viewMod():
-    print "\n【module_factions.py】===================\n"
-    print "##文化信息"
+    print "\n[module_factions.py]===================\n"
+    print "cultures info……"
     if len(dataList["cultures"])>0:
         printInfo(dataList["cultures"])
     else:
-        print "没有生成文化信息……"
-    print "##国家信息"
+        print "no cultures info……"
+    print "factions info……"
     if len(dataList["factions"]) > 0:
         printInfo(dataList["factions"])
     else:
-        print "没有生成国家信息……"
-    print "\n【module_troops.py】===================\n"
-    print "##国王信息"
+        print "no factions info……"
+    print "\n[module_troops.py]===================\n"
+    print "kings info……"
     if len(dataList["king"]) > 0:
         printInfo(dataList["king"])
     else:
-        print "没有生成国王信息……"
-    print "##叛军首领信息"
+        print "no kings info……"
+    print "pretenders info……"
     if len(dataList["pretender"]) > 0:
         printInfo(dataList["pretender"])
     else:
-        print "没有生成叛军首领信息……"
-    print "##领主信息"
+        print "no pretenders info……"
+    print "lords info……"
     if len(dataList["lords"]) > 0:
         printInfo(dataList["lords"])
     else:
-        print "没有生成领主信息……"
-    print "##女士信息"
+        print "no lords info……"
+    print "ladies info……"
     if len(dataList["wifes"]) > 0:
         printInfo(dataList["wifes"])
     else:
-        print "没有生成妻子信息……"
+        print "no wifes info……"
     if len(dataList["daughters"]) > 0:
         printInfo(dataList["daughters"])
     else:
-        print "没有生成女儿信息……"
-    print "##兵种信息"
+        print "no daughters info……"
+    print "cities info……"
+    if len(dataList["facCities"]) > 0:
+        printInfo(dataList["facCities"])
+    else:
+        print "no faction cities info……"
+    if len(dataList["lordCities"]) > 0:
+        printInfo(dataList["lordCities"])
+    else:
+        print "no lord cities info……"
+    print "troops info……"
     if len(dataList["troops"]) > 0:
         printInfo(dataList["troops"])
     else:
-        print "没有生成兵种信息……"
-    print "##兵种升级信息"
+        print "no troops info……"
+    print "troops upgrade info……"
     if len(dataList["upgrades"]) > 0:
         printInfo(dataList["upgrades"])
     else:
-        print "没有生成兵种升级信息……"
-    print "\n【module_party_templates.py】===================\n"
-    print "##部队模板信息"
+        print "no troops upgrade info……"
+    print "\n[module_party_templates.py]===================\n"
+    print "party template info……"
     if len(dataList["partyTemplate"]) > 0:
         printInfo(dataList["partyTemplate"])
     else:
-        print "没有生成部队模板信息……"
-    print "\n【module_constants.py】===================\n"
-    print "##常量信息"
+        print "no party template info……"
+    print "\n[module_constants.py]===================\n"
+    print "constants info……"
     if len(dataList["constants"]) > 0:
         printInfo(dataList["constants"])
     else:
-        print "没有生成常量信息……"
+        print "no constants info……"
 
 updateItems = [
     ["module_troops.py",["troops"],"#troop start","#troop end"],
@@ -622,6 +653,7 @@ updateItems = [
     ["module_troops.py",["king","lords","pretender","wifes","daughters"],"#king start","#king end"],
     ["module_factions.py",["cultures"],"#culture start","#culture end"],
     ["module_factions.py",["factions"],"#faction start","#faction end"],
+    ["module_scripts.py",["facCities","lordCities","kingCities"],"#city start","#city end"],
     ["module_party_templates.py","partyTemplate","#party templates start","#party templates end"],
 ]
 def concatData(keys):

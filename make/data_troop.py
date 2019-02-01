@@ -3,7 +3,6 @@ import  re
 import  random
 import data_item
 import parse_config
-from ModuleSystem.header_troops import *
 # trained 熟练的
 # veteran 老兵
 # champion 侍卫

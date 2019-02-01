@@ -2,8 +2,8 @@
 import re
 import math
 import random
-from ModuleSystem.module_items import *
-from ModuleSystem.header_items import *
+from module_items import *
+from header_items import *
 from output import *
 
 itemTypes = {

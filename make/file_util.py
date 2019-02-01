@@ -30,7 +30,7 @@ def writeInRange(filepath,lines,startLine,endLine):
             if fileLines[idx].startswith(endLine):
                 end = idx
     except IOError:
-        print "文件没有找到："+filepath
+        print "File not found:"+filepath
         return
 
     if start != -1 and end != -1:
@@ -45,12 +45,12 @@ def writeInRange(filepath,lines,startLine,endLine):
                 result.append(fileLines[idx])
             #写入数据
             open(filepath,"w").writelines(result)
-            print "成功修改文件："+filepath
+            print "Successful file modification:"+filepath
         except BaseException,e:
-            print "写入文件时出错："+filepath
-            print "错误信息："+e
+            print "Error writing to file:"+filepath
+            print "error message:"+e
     else:
-        print "未修改文件："+filepath
+        print "Unmodified file:"+filepath
 '''
     根据指定数据替换文件中的值
 '''
@@ -73,12 +73,12 @@ def writeReplace(filepath,varMap):
         try:
             # 写入数据
             open(filepath, "w").writelines(result)
-            print "成功修改文件：" + filepath
+            print "Successful file modification:" + filepath
         except BaseException,e:
-            print "写入文件时出错：" + filepath
-            print "错误信息：" + e
+            print "Error writing to file:" + filepath
+            print "error message:" + e
     except IOError:
-        print "文件没有找到：" + filepath
+        print "File not found:" + filepath
 
 '''
     查找文件中指定的区间，
@@ -104,7 +104,7 @@ def readInRange(filepath,startLine,endLine):
     try:
         fileLines = open(filepath,"r+").readlines()
     except IOError:
-        print "文件没有找到："+filepath
+        print "File not found:"+filepath
         return
     fileRange = findRange(fileLines,startLine,endLine)
     # 如果查找到区域位置
@@ -116,12 +116,12 @@ def readInRange(filepath,startLine,endLine):
             result = []
             for index in range(start+1,end):
                 result.append(fileLines[index])
-            print "成功读取文件中的数据："+filepath
+            print "Successfully read the data in the file:"+filepath
             return result
         except BaseException,e:
-            print "错误信息："+e
+            print "error message:"+e
     else:
-        print "在文件中没有找到数据："+filepath
+        print "No data found in the file:"+filepath
 
 '''
     从列表中过滤对象，返回一个过滤后的列表

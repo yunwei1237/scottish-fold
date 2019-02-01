@@ -52,18 +52,13 @@ def updateBuildBat():
     builderBatFile(commands,os.path.join(scriptpath, "build_module.bat"),scriptpath)
 starts = [
     "@echo off",
-    "python %s\run.py",
-    "echo Press any key to exit. . .",
-    "pause>nul"
+    "python %s\ run.py",
 ]
 def updateStartBat():
-    builderBatFile(starts,os.path.join(projectPath, "\start\start.bat"),projectPath+"\start")
+    builderBatFile(starts,os.path.join(projectPath, "start\start.bat"),os.path.join(projectPath, "start"))
 
 def buildMod():
     writeReplace(os.path.join(scriptpath,"module_info.py"),{"export_dir":'"%s"'%(modPath)})
     os.system(os.path.join(scriptpath,"build_module.bat"))
 
-
-
-
-cat(os.path.join(projectPath,"start/start.bat"))
+#cat(os.path.join(projectPath,"start/start.bat"))

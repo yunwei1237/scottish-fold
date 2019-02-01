@@ -49,6 +49,3 @@ pt_kingdom_5_reinforcements_c = 47
 pt_kingdom_6_reinforcements_a = 48
 pt_kingdom_6_reinforcements_b = 49
 pt_kingdom_6_reinforcements_c = 50
-pt_kingdom_7_reinforcements_a = 51
-pt_kingdom_7_reinforcements_b = 52
-pt_kingdom_7_reinforcements_c = 53
