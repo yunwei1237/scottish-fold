@@ -310,9 +310,9 @@ factions=[
 ]
 ```
 
-![截图1](E:\projects\PycharmProjects\scottish-fold\images\mb1.bmp)
+![截图1](E:\projects\PycharmProjects\scottish-fold\images\mb1.jpg)
 
-![截图2](E:\projects\PycharmProjects\scottish-fold\images\mb2.bmp)
+![截图2](E:\projects\PycharmProjects\scottish-fold\images\mb2.jpg)
 
 ### 3.添加兵种
 
