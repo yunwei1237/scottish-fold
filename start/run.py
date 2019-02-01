@@ -20,6 +20,6 @@ run()
 # 更新build.bat文件
 updateBuildBat()
 # 更新start.bat文件
-updateStartBat()
+#updateStartBat()
 # 构造剧本
 buildMod()
